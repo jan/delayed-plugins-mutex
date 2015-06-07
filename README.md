@@ -16,6 +16,7 @@ Register the plugin like so:
 
     require 'delayed-plugins-mutex'
     Delayed::Worker.plugins << Delayed::Plugins::Mutex::Plugin
+    Delayed::Plugins::Mutex::Plugin.new # Not sure, why this is needed
 
 In a Rails project, this can be done in `config/initializers`.
 
