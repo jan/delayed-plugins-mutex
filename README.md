@@ -31,8 +31,14 @@ When calling delay, you can now optionally pass new arguments:
    # If another job with the same identifier is already enqueued, this does nothing:
    Foo.delay(enqueue_mutex: 'some identifier')
    
-   # If two other jobs with the same identifier is already enqueued, this does nothing:
+   # If two other jobs with the same identifier are already enqueued, this does nothing:
    Foo.delay(enqueue_mutex: 'some identifier', enqueue_limit: 2)
+
+   # If another job with the same identifier is already locked, don't perform this:
+   Foo.delay(perform_mutex: 'some identifier')
+   
+   # If two other jobs with the same identifier are already locked, don't perform this:
+   Foo.delay(perform_mutex: 'some identifier', perform_limit: 2)
 
 ## Contributing
 
