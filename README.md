@@ -10,7 +10,11 @@ Add this line to your application's Gemfile:
 
     gem 'delayed-plugins-mutex', git: 'https://github.com/jan/delayed-plugins-mutex'
 
-## Usage
+Import and run migration:
+
+    TODO How to import migration
+    
+    bundle exec rake db:migrate
 
 Register the plugin like so:
 
@@ -19,6 +23,16 @@ Register the plugin like so:
     Delayed::Plugins::Mutex::Plugin.new # Not sure, why this is needed
 
 In a Rails project, this can be done in `config/initializers`.
+
+## Usage
+
+When calling delay, you can now optionally pass new arguments:
+
+   # If another job with the same identifier is already enqueued, this does nothing:
+   Foo.delay(enqueue_mutex: 'some identifier')
+   
+   # If two other jobs with the same identifier is already enqueued, this does nothing:
+   Foo.delay(enqueue_mutex: 'some identifier', enqueue_limit: 2)
 
 ## Contributing
 
